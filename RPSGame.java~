@@ -1,0 +1,76 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+//rock paper scissors game
+public class RPSGame{
+	
+	JFrame frame;
+	JLabel label;
+	
+	public static void main(String[] args){
+		
+		RPSGame gui = new RPSGame();
+		gui.go();
+	}
+	
+	public void go() {
+		frame = new JFrame("Rock Paper Scissors game!");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JButton rockButton = new JButton("ROCK!");
+		rockButton.addActionListener(new rockListener());
+		
+		
+		JButton paperButton = new JButton("PAPER!");
+		paperButton.addActionListener(new paperListener());
+		
+		
+		JButton scissorsButton = new JButton("Scissors!");
+		scissorsButton.addActionListener(new scissorsListener());
+		
+		
+		MyDrawPanel drawPanel = new MyDrawPanel();
+		
+		frame.getContentPane().add(BorderLayout.WEST, rockButton);
+		frame.getContentPane().add(BorderLayout.CENTER, paperButton);
+		frame.getContentPane().add(BorderLayout.EAST, scissorsButton);
+		frame.getContentPane().add(BorderLayout.SOUTH, drawPanel);
+		
+		scissorsButton.setSize(new Dimension(150,50));
+		paperButton.setSize(new Dimension(150,50));
+		rockButton.setSize(new Dimension(150,50));
+		paperButton.setLocation((frame.getWidth()-paperButton.getWidth())/2, 0);
+		frame.setSize(700,300);
+		frame.setVisible(true);
+	}
+	
+	class rockListener implements ActionListener {
+		public void actionPerformed(ActionEvent event){
+			//rockButton.setText("Ouch!");
+		}
+	}
+	
+	class paperListener implements ActionListener {
+		public void actionPerformed(ActionEvent event){
+			//label.setText("Ouch!");
+		}
+	}
+	
+	class scissorsListener implements ActionListener {
+		public void actionPerformed(ActionEvent event){
+			//label.setText("Ouch!");
+		}
+	}
+	
+	class MyDrawPanel extends JPanel {
+	
+		public void paintComponent(Graphics g) {
+			
+			Graphics2D g2d = (Graphics2D) g;
+			
+			Image rps = new ImageIcon("rps.jpg").getImage();
+			g.drawImage(rps,10,10,this);
+		}
+	}
+}
